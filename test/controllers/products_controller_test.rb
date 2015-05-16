@@ -14,12 +14,15 @@ class ProductsControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:products)
+    assert_not_nil assigns(:products) #assigns a valid articles instance variable (in controller action #index)
+    assert_select 'table tr td', minimum: 5 #test if there are at least 5 cells (with 3 products, there are 6)
+    assert_select 'img', minimum: 2 #test if there are at least 2 images (in html file, we used image_tag helper)
   end
 
   test "should get new" do
     get :new
     assert_response :success
+    assert_select 'h1', 'New product'
   end
 
   test "should create product" do
@@ -38,6 +41,7 @@ class ProductsControllerTest < ActionController::TestCase
   test "should get edit" do
     get :edit, id: @product
     assert_response :success
+    assert_select 'a', minimum: 2 #test if there areath least 2 links (in html file, we used link_to helper)
   end
 
   test "should update product" do

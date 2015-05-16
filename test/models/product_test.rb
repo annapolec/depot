@@ -21,8 +21,8 @@ class ProductTest < ActiveSupport::TestCase
   							image_url: "cs.png")
   	product.price = -1
   	assert product.invalid?
-  	assert_equal ["must be greater than 0.01"],
-  		product.errors[:price]
+    assert_equal ["must be greater than 0.01"],
+    	product.errors[:price]
 
   	product.price = 0
   	assert product.invalid?
@@ -55,7 +55,7 @@ class ProductTest < ActiveSupport::TestCase
   end
 
   test "product is not valid without a unigue title" do
-  	product = Product.new(title: products(:ruby).title,
+  	product = Product.new(title: 'cokolwiek', #j tytul daje to co bylo wpisane w fixture jako entry "ruby"
   							description: "plspls",
   							price: 23,
   							image_url: "cs.png")
